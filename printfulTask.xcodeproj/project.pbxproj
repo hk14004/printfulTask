@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D426ABD1255047770079E9AA /* FriendAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABD0255047770079E9AA /* FriendAnnotation.swift */; };
 		D426ABD4255048080079E9AA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABD3255048080079E9AA /* Friend.swift */; };
+		D426ABD725505C860079E9AA /* FriendsDataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABD625505C860079E9AA /* FriendsDataStream.swift */; };
+		D426ABDD2550605A0079E9AA /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABDC2550605A0079E9AA /* Data.swift */; };
+		D426ABE0255064E70079E9AA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABDF255064E70079E9AA /* Logger.swift */; };
+		D426ABE3255077140079E9AA /* FriendsDataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABE2255077140079E9AA /* FriendsDataListener.swift */; };
 		D47DF67625503C430030F4E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67525503C430030F4E2 /* AppDelegate.swift */; };
 		D47DF67825503C430030F4E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67725503C430030F4E2 /* SceneDelegate.swift */; };
 		D47DF67A25503C430030F4E2 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67925503C430030F4E2 /* MapVC.swift */; };
@@ -21,6 +25,10 @@
 /* Begin PBXFileReference section */
 		D426ABD0255047770079E9AA /* FriendAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAnnotation.swift; sourceTree = "<group>"; };
 		D426ABD3255048080079E9AA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		D426ABD625505C860079E9AA /* FriendsDataStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDataStream.swift; sourceTree = "<group>"; };
+		D426ABDC2550605A0079E9AA /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		D426ABDF255064E70079E9AA /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		D426ABE2255077140079E9AA /* FriendsDataListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDataListener.swift; sourceTree = "<group>"; };
 		D47DF67225503C430030F4E2 /* printfulTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = printfulTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47DF67525503C430030F4E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D47DF67725503C430030F4E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D426ABDB2550603F0079E9AA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D426ABDC2550605A0079E9AA /* Data.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		D47DF66925503C430030F4E2 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +88,10 @@
 				D47DF68325503C450030F4E2 /* Info.plist */,
 				D426ABD0255047770079E9AA /* FriendAnnotation.swift */,
 				D426ABD3255048080079E9AA /* Friend.swift */,
+				D426ABD625505C860079E9AA /* FriendsDataStream.swift */,
+				D426ABE2255077140079E9AA /* FriendsDataListener.swift */,
+				D426ABDF255064E70079E9AA /* Logger.swift */,
+				D426ABDB2550603F0079E9AA /* Extensions */,
 			);
 			path = printfulTask;
 			sourceTree = "<group>";
@@ -147,11 +167,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				D47DF67A25503C430030F4E2 /* MapVC.swift in Sources */,
+				D426ABE3255077140079E9AA /* FriendsDataListener.swift in Sources */,
 				D47DF67625503C430030F4E2 /* AppDelegate.swift in Sources */,
 				D47DF67825503C430030F4E2 /* SceneDelegate.swift in Sources */,
 				D426ABD4255048080079E9AA /* Friend.swift in Sources */,
+				D426ABE0255064E70079E9AA /* Logger.swift in Sources */,
+				D426ABD725505C860079E9AA /* FriendsDataStream.swift in Sources */,
 				D47DF68E255040B60030F4E2 /* MapVM.swift in Sources */,
 				D426ABD1255047770079E9AA /* FriendAnnotation.swift in Sources */,
+				D426ABDD2550605A0079E9AA /* Data.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
