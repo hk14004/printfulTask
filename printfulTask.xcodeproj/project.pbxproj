@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D426ABD1255047770079E9AA /* FriendAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABD0255047770079E9AA /* FriendAnnotation.swift */; };
+		D426ABD4255048080079E9AA /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABD3255048080079E9AA /* Friend.swift */; };
 		D47DF67625503C430030F4E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67525503C430030F4E2 /* AppDelegate.swift */; };
 		D47DF67825503C430030F4E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67725503C430030F4E2 /* SceneDelegate.swift */; };
 		D47DF67A25503C430030F4E2 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67925503C430030F4E2 /* MapVC.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D426ABD0255047770079E9AA /* FriendAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAnnotation.swift; sourceTree = "<group>"; };
+		D426ABD3255048080079E9AA /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		D47DF67225503C430030F4E2 /* printfulTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = printfulTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47DF67525503C430030F4E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D47DF67725503C430030F4E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +70,8 @@
 				D47DF67E25503C450030F4E2 /* Assets.xcassets */,
 				D47DF68025503C450030F4E2 /* LaunchScreen.storyboard */,
 				D47DF68325503C450030F4E2 /* Info.plist */,
+				D426ABD0255047770079E9AA /* FriendAnnotation.swift */,
+				D426ABD3255048080079E9AA /* Friend.swift */,
 			);
 			path = printfulTask;
 			sourceTree = "<group>";
@@ -143,7 +149,9 @@
 				D47DF67A25503C430030F4E2 /* MapVC.swift in Sources */,
 				D47DF67625503C430030F4E2 /* AppDelegate.swift in Sources */,
 				D47DF67825503C430030F4E2 /* SceneDelegate.swift in Sources */,
+				D426ABD4255048080079E9AA /* Friend.swift in Sources */,
 				D47DF68E255040B60030F4E2 /* MapVM.swift in Sources */,
+				D426ABD1255047770079E9AA /* FriendAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
