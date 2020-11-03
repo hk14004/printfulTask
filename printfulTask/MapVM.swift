@@ -11,7 +11,6 @@ class MapVM {
     
     weak var delegate: MapVMDelegate?
     private let friendDataStream = FriendsDataStream()
-    private var friendAnnotations: [FriendAnnotation] = []
     private var friendAnnotationsMap: [String: FriendAnnotation] = [:]
     private var downloadQueue: OperationQueue = {
         let queue = OperationQueue()
@@ -42,7 +41,7 @@ class MapVM {
                         let data = data,
                         let image = UIImage(data: data)
                     else {
-                        Logger.err("Failed to load avatar, retry?")
+                        Logger.err("Failed to load friends avatar! \(error?.localizedDescription ?? "No error was received")")
                         return
                     }
                     
@@ -61,11 +60,8 @@ extension MapVM: FriendsDataListener {
     
     func friendsListChanged(friends: [Friend]) {
         delegate?.friendsListWillChange()
-        friendAnnotations = friends.compactMap { FriendAnnotation(friend: $0) }
-        for friendAnnotation in friendAnnotations {
-            friendAnnotationsMap[friendAnnotation.friend.id] = friendAnnotation
-        }
-        prepareFriendAnnotationsForDisplay(friendAnnotations)
+        friends.forEach { friendAnnotationsMap[$0.id] = FriendAnnotation(friend: $0) }
+        prepareFriendAnnotationsForDisplay(Array(friendAnnotationsMap.values))
     }
 }
 
