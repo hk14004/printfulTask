@@ -30,9 +30,14 @@ class MapVM {
     
     private func prepareFriendAnnotationsForDisplay(_ annotations: [FriendAnnotation]) {
         for annotation in annotations {
-            downloadQueue.addOperation {
-                guard let url = URL(string: annotation.friend.image) else { return }
-                URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            downloadQueue.addOperation { [weak self] in
+                guard let url = URL(string: annotation.friend.image) else {
+                    annotation.friendAvatar = UIImage(systemName: "person.circle.fill")
+                    self?.delegate?.annotationReadyForDisplay(annotation)
+                    return
+                }
+                
+                URLSession.shared.dataTask(with: url) { data, response, error in
                     guard
                         let data = data,
                         let image = UIImage(data: data)
