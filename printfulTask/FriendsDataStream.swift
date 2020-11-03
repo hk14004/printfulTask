@@ -45,11 +45,11 @@ class FriendsDataStream: NSObject {
         let authMessage = "AUTHORIZE \(email) \n"
         
         guard let outputData = authMessage.data(using: .ascii) else {
-            print("Failed to parse authorization message")
+            Logger.err("Failed to parse authorization message")
             return
         }
         
-        print("Sending Authorization data: \(authMessage)")
+        Logger.debug("Sending Authorization data: \(authMessage)")
         _ = outputData.withUnsafeBytes { outputStream.write($0, maxLength: outputData.count) }
     }
     
@@ -84,6 +84,7 @@ class FriendsDataStream: NSObject {
     }
     
     private func createFriendList(from command: String) -> [Friend] {
+        Logger.debug("USERLIST command recieved:", command)
         let friendsStringArr = command.dropFirst(FriendsStreamCommand.USERLIST.rawValue.count + 1).split(separator: ";")
         var friends: [Friend] = []
         
@@ -105,7 +106,7 @@ class FriendsDataStream: NSObject {
     }
     
     func createFriendLocationUpdate(from command: String) -> FriendUpdate? {
-        print("Received from server: ", command)
+        Logger.debug("UPDATE command recieved:", command)
         let friendUpdateString = command.dropFirst(FriendsStreamCommand.UPDATE.rawValue.count + 1)
         let newValueArr = friendUpdateString.split(separator: ",")
         let userId = String(newValueArr[0])
@@ -124,18 +125,10 @@ extension FriendsDataStream: StreamDelegate {
     func stream(_ aStream: Stream, handle eventCode: Stream.Event) {
         switch eventCode {
         case Stream.Event.hasBytesAvailable:
-            print("Received data")
+            Logger.debug("Received data")
             readReceivedData()
-        case Stream.Event.endEncountered:
-            print("New data received")
-        case Stream.Event.errorOccurred:
-            print("Error occurred")
-        case Stream.Event.hasSpaceAvailable:
-            print("Space available")
-        case Stream.Event.openCompleted:
-            print("inputStream opened")
         default:
-            print("Unknown stream event received")
+            Logger.warn("Unknown stream event received: \(eventCode.rawValue)")
             break
         }
     }
