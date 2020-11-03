@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 struct FriendUpdate {
-    let userId: String
+    let friendID: FriendID
     let latitude: CLLocationDegrees
     let longitude: CLLocationDegrees
 }

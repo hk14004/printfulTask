@@ -112,7 +112,7 @@ class FriendsDataStream: NSObject {
         let userId = String(newValueArr[0])
         if let latitude = Double(newValueArr[1]),
            let longitude = Double(newValueArr[2]) {
-            return FriendUpdate(userId: userId, latitude: latitude, longitude: longitude)
+            return FriendUpdate(friendID: userId, latitude: latitude, longitude: longitude)
         } else {
             Logger.err("Could not parse user update data!")
             return nil

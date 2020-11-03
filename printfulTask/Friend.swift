@@ -8,15 +8,17 @@
 import Foundation
 import MapKit
 
+typealias FriendID = String
+
 class Friend {
     
-    let id: String
+    let id: FriendID
     let name: String
     let imageUrl: String
     var latitude: CLLocationDegrees
     var longitude: CLLocationDegrees
     
-    init(id: String, name: String, imageUrl: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+    init(id: FriendID, name: String, imageUrl: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.id = id
         self.name = name
         self.imageUrl = imageUrl

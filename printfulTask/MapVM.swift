@@ -12,7 +12,7 @@ class MapVM {
     
     weak var delegate: MapVMDelegate?
     private let friendDataStream = FriendsDataStream()
-    private var friendAnnotationsMap: [String: FriendAnnotation] = [:]
+    private var friendAnnotationsMap: [FriendID: FriendAnnotation] = [:]
     private var downloadQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 5
@@ -65,7 +65,7 @@ class MapVM {
 
 extension MapVM: FriendsDataListener {
     func friendLocationChanged(update: FriendUpdate) {
-        if let annotation = friendAnnotationsMap[update.userId] {
+        if let annotation = friendAnnotationsMap[update.friendID] {
             delegate?.annotationShouldAnimate(annotation,
                                               to: .init(latitude: update.latitude,
                                                         longitude: update.longitude))
