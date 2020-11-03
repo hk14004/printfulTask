@@ -8,15 +8,18 @@
 import Foundation
 import MapKit
 
-class FriendAnnotation: NSObject, MKAnnotation {
+class FriendAnnotation: MKPointAnnotation {
     
     var friend: Friend
-    var coordinate: CLLocationCoordinate2D
+    var friendAvatar: UIImage?
     
     init(friend: Friend) {
     self.friend = friend
-    self.coordinate = CLLocationCoordinate2D(latitude: friend.latitude, longitude: friend.longitude)
 
     super.init()
+        self.coordinate = CLLocationCoordinate2D(latitude: friend.latitude, longitude: friend.longitude)
+        self.title = friend.name
+        self.subtitle = "Ielas nosaukums"
+
   }
 }
