@@ -98,7 +98,7 @@ class FriendsDataStream: NSObject {
                 Logger.err("Could not decode friend location!")
                 continue
             }
-            friends.append(Friend(id: userId, name: fullName, image: imageUrl, latitude: latitude, longitude: longitude))
+            friends.append(Friend(id: userId, name: fullName, imageUrl: imageUrl, latitude: latitude, longitude: longitude))
         }
         
         return friends
