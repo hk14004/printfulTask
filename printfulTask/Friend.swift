@@ -13,8 +13,8 @@ class Friend {
     let id: String
     let name: String
     let image: String
-    let latitude: CLLocationDegrees
-    let longitude: CLLocationDegrees
+    var latitude: CLLocationDegrees
+    var longitude: CLLocationDegrees
     
     init(id: String, name: String, image: String, latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         self.id = id

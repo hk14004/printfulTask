@@ -71,7 +71,9 @@ class FriendsDataStream: NSObject {
         let commands = utf8String.components(separatedBy: "\n").filter {!$0.isEmpty}
         commands.forEach { (command) in
             if command.starts(with: FriendsStreamCommand.UPDATE.rawValue) {
-                //TODO: Update delegate
+                if let update = createFriendLocationUpdate(from: command) {
+                    delegate?.friendLocationChanged(update: update)
+                }
             } else if command.starts(with: FriendsStreamCommand.USERLIST.rawValue) {
                 let friendsList = createFriendList(from: command)
                 delegate?.friendsListChanged(friends: friendsList)
@@ -101,7 +103,20 @@ class FriendsDataStream: NSObject {
         
         return friends
     }
-
+    
+    func createFriendLocationUpdate(from command: String) -> FriendUpdate? {
+        print("Received from server: ", command)
+        let friendUpdateString = command.dropFirst(FriendsStreamCommand.UPDATE.rawValue.count + 1)
+        let newValueArr = friendUpdateString.split(separator: ",")
+        let userId = String(newValueArr[0])
+        if let latitude = Double(newValueArr[1]),
+           let longitude = Double(newValueArr[2]) {
+            return FriendUpdate(userId: userId, latitude: latitude, longitude: longitude)
+        } else {
+            Logger.err("Could not parse user update data!")
+            return nil
+        }
+    }
 }
 
 // MARK: Extensions

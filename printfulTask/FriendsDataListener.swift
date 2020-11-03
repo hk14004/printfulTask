@@ -9,4 +9,5 @@ import Foundation
 
 protocol FriendsDataListener: class {
     func friendsListChanged(friends: [Friend])
+    func friendLocationChanged(update: FriendUpdate)
 }

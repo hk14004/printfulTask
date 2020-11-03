@@ -11,13 +11,8 @@ class MapVM {
     
     weak var delegate: MapVMDelegate?
     private let friendDataStream = FriendsDataStream()
-    private var friendsList: [Friend] = [
-        Friend(id: "1", name: "Hardijs Ķirsis", image: "https://media-exp1.licdn.com/dms/image/C4E03AQEKtn17DJzVwQ/profile-displayphoto-shrink_200_200/0?e=1609977600&v=beta&t=GRfU9iLMR0qbF-ASGtW69slPI_ipvBMXhBOJqpJIWBg", latitude: 56.9495677035, longitude: 24.1064071655),
-        Friend(id: "2", name: "Test 1", image: "", latitude: 57, longitude: 24.1064071655)
-    ]
-    
     private var friendAnnotations: [FriendAnnotation] = []
-    
+    private var friendAnnotationsMap: [String: FriendAnnotation] = [:]
     private var downloadQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 5
@@ -29,9 +24,8 @@ class MapVM {
     }
     
     func connect() {
-        //        friendDataStream.connect()
-        //        friendDataStream.authorize()
-        self.friendsListChanged(friends: friendsList)
+        friendDataStream.connect()
+        friendDataStream.authorize()
     }
     
     private func prepareFriendAnnotationsForDisplay(_ annotations: [FriendAnnotation]) {
@@ -56,9 +50,16 @@ class MapVM {
 }
 
 extension MapVM: FriendsDataListener {
+    func friendLocationChanged(update: FriendUpdate) {
+        friendAnnotationsMap["\(update.userId)"]?.updateLocation(longitude: update.longitude, latitude: update.latitude)
+    }
+    
     func friendsListChanged(friends: [Friend]) {
         delegate?.friendsListWillChange()
-        friendAnnotations = friendsList.compactMap { FriendAnnotation(friend: $0)}
+        friendAnnotations = friends.compactMap { FriendAnnotation(friend: $0) }
+        for friendAnnotation in friendAnnotations {
+            friendAnnotationsMap[friendAnnotation.friend.id] = friendAnnotation
+        }
         prepareFriendAnnotationsForDisplay(friendAnnotations)
     }
 }
