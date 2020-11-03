@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class MapVM {
     
@@ -25,6 +26,15 @@ class MapVM {
     func connect() {
         friendDataStream.connect()
         friendDataStream.authorize()
+    }
+    
+    func getDescription(for location: CLLocation, completion: @escaping (CLPlacemark?) -> Void) {
+        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
+            if let error = error {
+                Logger.err("Could not grab name of the location! \(error.localizedDescription)")
+            }
+            completion(placemarks?.first)
+        }
     }
     
     private func prepareFriendAnnotationsForDisplay(_ annotations: [FriendAnnotation]) {
@@ -55,7 +65,14 @@ class MapVM {
 
 extension MapVM: FriendsDataListener {
     func friendLocationChanged(update: FriendUpdate) {
-        friendAnnotationsMap["\(update.userId)"]?.updateLocation(longitude: update.longitude, latitude: update.latitude)
+        if let annotation = friendAnnotationsMap[update.userId] {
+            delegate?.annotationShouldAnimate(annotation,
+                                              to: .init(latitude: update.latitude,
+                                                        longitude: update.longitude))
+        } else {
+            Logger.warn("Make sure all friend annotations are visible before updating its location")
+        }
+        
     }
     
     func friendsListChanged(friends: [Friend]) {
@@ -68,4 +85,5 @@ extension MapVM: FriendsDataListener {
 protocol MapVMDelegate: class {
     func friendsListWillChange()
     func annotationReadyForDisplay(_ annotation: FriendAnnotation)
+    func annotationShouldAnimate(_ annotation: FriendAnnotation, to location: CLLocation)
 }
