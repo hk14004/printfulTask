@@ -39,26 +39,14 @@ extension MapVC: MapVMDelegate {
 
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        guard let friendAnnotation = annotation as? FriendAnnotation else {
-            return nil
-        }
+        guard let friendAnnotation = annotation as? FriendAnnotation else { return nil }
         
-        let identifier = "friendsAnnotation"
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
+        let identifier = FriendAnnotationView.reuseId
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? FriendAnnotationView
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: friendAnnotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-        } else {
-            annotationView?.annotation = friendAnnotation
+            annotationView = FriendAnnotationView(annotation: friendAnnotation, reuseIdentifier: identifier)
         }
-        
-        let imgView = UIImageView(image: friendAnnotation.friendAvatar)
-        
-        imgView.frame = CGRect(x: imgView.frame.origin.x, y: imgView.frame.origin.y, width: 40, height: 40)
-        imgView.contentMode = .scaleAspectFit
-        annotationView?.leftCalloutAccessoryView = imgView
+        annotationView?.setup(with: friendAnnotation)
 
         return annotationView
     }

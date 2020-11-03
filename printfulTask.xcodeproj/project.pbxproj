@@ -13,6 +13,7 @@
 		D426ABDD2550605A0079E9AA /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABDC2550605A0079E9AA /* Data.swift */; };
 		D426ABE0255064E70079E9AA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABDF255064E70079E9AA /* Logger.swift */; };
 		D426ABE3255077140079E9AA /* FriendsDataListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D426ABE2255077140079E9AA /* FriendsDataListener.swift */; };
+		D43BB4D525517B0D0051BBCA /* FriendAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43BB4D425517B0D0051BBCA /* FriendAnnotationView.swift */; };
 		D446BB2325511179008965B0 /* FriendUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D446BB2225511179008965B0 /* FriendUpdate.swift */; };
 		D47DF67625503C430030F4E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67525503C430030F4E2 /* AppDelegate.swift */; };
 		D47DF67825503C430030F4E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47DF67725503C430030F4E2 /* SceneDelegate.swift */; };
@@ -30,6 +31,7 @@
 		D426ABDC2550605A0079E9AA /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		D426ABDF255064E70079E9AA /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		D426ABE2255077140079E9AA /* FriendsDataListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsDataListener.swift; sourceTree = "<group>"; };
+		D43BB4D425517B0D0051BBCA /* FriendAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAnnotationView.swift; sourceTree = "<group>"; };
 		D446BB2225511179008965B0 /* FriendUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendUpdate.swift; sourceTree = "<group>"; };
 		D47DF67225503C430030F4E2 /* printfulTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = printfulTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D47DF67525503C430030F4E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				D47DF67525503C430030F4E2 /* AppDelegate.swift */,
 				D47DF67725503C430030F4E2 /* SceneDelegate.swift */,
 				D47DF67925503C430030F4E2 /* MapVC.swift */,
+				D43BB4D425517B0D0051BBCA /* FriendAnnotationView.swift */,
 				D47DF68D255040B60030F4E2 /* MapVM.swift */,
 				D47DF67B25503C430030F4E2 /* Main.storyboard */,
 				D47DF67E25503C450030F4E2 /* Assets.xcassets */,
@@ -172,6 +175,7 @@
 				D47DF67A25503C430030F4E2 /* MapVC.swift in Sources */,
 				D426ABE3255077140079E9AA /* FriendsDataListener.swift in Sources */,
 				D47DF67625503C430030F4E2 /* AppDelegate.swift in Sources */,
+				D43BB4D525517B0D0051BBCA /* FriendAnnotationView.swift in Sources */,
 				D47DF67825503C430030F4E2 /* SceneDelegate.swift in Sources */,
 				D426ABD4255048080079E9AA /* Friend.swift in Sources */,
 				D426ABE0255064E70079E9AA /* Logger.swift in Sources */,
