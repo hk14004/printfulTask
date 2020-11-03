@@ -66,6 +66,11 @@ class MapVM {
 extension MapVM: FriendsDataListener {
     func friendLocationChanged(update: FriendUpdate) {
         if let annotation = friendAnnotationsMap[update.friendID] {
+            if annotation.friend.latitude == update.latitude &&
+                annotation.friend.longitude == update.longitude {
+                Logger.warn("Server is sending duplicate locations for friend (\(update.friendID)), ignoring!")
+                return
+            }
             delegate?.annotationShouldAnimate(annotation,
                                               to: .init(latitude: update.latitude,
                                                         longitude: update.longitude))
