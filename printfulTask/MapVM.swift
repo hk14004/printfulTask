@@ -104,8 +104,9 @@ extension MapVM: FriendsDataListener {
     }
     
     func friendsListChanged(friends: [Friend]) {
-        delegate?.friendsListWillChange()
+        friendAnnotationsMap.removeAll()
         friends.forEach { friendAnnotationsMap[$0.id] = FriendAnnotation(friend: $0) }
+        delegate?.friendsListWillChange()
         prepareFriendAnnotationsForDisplay(Array(friendAnnotationsMap.values))
     }
 }
