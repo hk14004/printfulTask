@@ -39,7 +39,7 @@ extension MapVC: MapVMDelegate {
     func annotationShouldAnimate(_ annotation: FriendAnnotation, to location: CLLocation) {
         mapVM.getDescription(for: location) { (description) in
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 2) {
+                UIView.animate(withDuration: 1) {
                     annotation.coordinate = location.coordinate
                     annotation.subtitle = description?.name
                 }
