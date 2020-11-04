@@ -13,7 +13,7 @@ class MapVM {
     weak var delegate: MapVMDelegate?
     private let friendDataStream = FriendsDataStream()
     private var friendAnnotationsMap: [FriendID: FriendAnnotation] = [:]
-    private var downloadQueue: OperationQueue = {
+    private var annotationPreperationQueue: OperationQueue = {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 5
         return queue
@@ -37,27 +37,50 @@ class MapVM {
         }
     }
     
+    private func downloadData(for annotation: FriendAnnotation, completion: @escaping () -> Void) {
+        let defaultImage = UIImage(systemName: "person.circle.fill")
+        guard let url = URL(string: annotation.friend.imageUrl) else {
+            annotation.friendAvatar = defaultImage
+            completion()
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard
+                let data = data,
+                let image = UIImage(data: data)
+            else {
+                //TODO: Add to retry queue
+                annotation.friendAvatar = defaultImage
+                Logger.err("Failed to load friends avatar! \(error?.localizedDescription ?? "No error was received")")
+                return
+            }
+            
+            annotation.friendAvatar = image
+            completion()
+        }.resume()
+    }
+    
     private func prepareFriendAnnotationsForDisplay(_ annotations: [FriendAnnotation]) {
         for annotation in annotations {
-            downloadQueue.addOperation { [weak self] in
-                guard let url = URL(string: annotation.friend.imageUrl) else {
-                    annotation.friendAvatar = UIImage(systemName: "person.circle.fill")
-                    self?.delegate?.annotationReadyForDisplay(annotation)
-                    return
+            annotationPreperationQueue.addOperation { [weak self] in
+                let group = DispatchGroup()
+                group.enter()
+                self?.downloadData(for: annotation) {
+                    group.leave()
                 }
                 
-                URLSession.shared.dataTask(with: url) { data, response, error in
-                    guard
-                        let data = data,
-                        let image = UIImage(data: data)
-                    else {
-                        Logger.err("Failed to load friends avatar! \(error?.localizedDescription ?? "No error was received")")
-                        return
-                    }
-                    
-                    annotation.friendAvatar = image
-                    self?.delegate?.annotationReadyForDisplay(annotation)
-                }.resume()
+                let annotationLocation = CLLocation(latitude: annotation.coordinate.latitude,
+                                                    longitude: annotation.coordinate.longitude)
+                group.enter()
+                self?.getDescription(for: annotationLocation) { description in
+                    annotation.subtitle = description?.name
+                    group.leave()
+                }
+                
+                group.notify(queue: .main) {
+                   self?.delegate?.annotationReadyForDisplay(annotation)
+                }
             }
         }
     }
