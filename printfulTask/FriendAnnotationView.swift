@@ -8,7 +8,7 @@
 import UIKit
 import MapKit
 
-class FriendAnnotationView: MKPinAnnotationView {
+class FriendAnnotationView: MKMarkerAnnotationView {
 
     static let reuseId = "FriendAnnotationView"
     
@@ -19,5 +19,8 @@ class FriendAnnotationView: MKPinAnnotationView {
         imgView.frame = CGRect(x: imgView.frame.origin.x, y: imgView.frame.origin.y, width: 40, height: 40)
         imgView.contentMode = .scaleAspectFit
         leftCalloutAccessoryView = imgView
+        clusteringIdentifier = "PinCluster"
+        glyphImage = UIImage(systemName: "person.circle.fill")
+        titleVisibility = .hidden
     }
 }
