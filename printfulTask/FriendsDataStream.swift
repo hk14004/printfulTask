@@ -43,14 +43,8 @@ class FriendsDataStream: NSObject {
     
     func authorize(email: String = "hardijs.kirsis@gmail.com") {
         let authMessage = "AUTHORIZE \(email) \n"
-        
-        guard let outputData = authMessage.data(using: .ascii) else {
-            Logger.err("Failed to parse authorization message")
-            return
-        }
-        
         Logger.debug("Sending Authorization data: \(authMessage)")
-        _ = outputData.withUnsafeBytes { outputStream.write($0, maxLength: outputData.count) }
+        outputStream.write(authMessage, maxLength: authMessage.utf8.count)
     }
     
     func disconnect() {
