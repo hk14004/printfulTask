@@ -1,4 +1,4 @@
-# Printful Task
+# Printful Task - In progress
 
 What does it do?
 - Connects to a socket server and gets users friends locations
